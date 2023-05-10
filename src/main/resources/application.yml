@@ -1,0 +1,24 @@
+server: # Indica que a aplicação será executada em um servidor.
+  port: 8080 #Define a porta em que o servidor escutará as requisições.
+
+spring:
+  datasource: #Define a conexão com o banco de dados.
+    url: jdbc:postgresql://localhost:5432/mentoria # Define a URL de conexão com o banco de dados PostgreSQL, que está hospedado na máquina local na porta 5432 e utiliza a base de dados "mentoria".
+    username: postgres #Define o nome do usuário utilizado para acessar o banco de dados.
+    password: postgres # Define a senha do usuário utilizado para acessar o banco de dados.
+    hikari: #Define algumas propriedades do Hikari, que é um gerenciador de conexões JDBC de alta performance.
+      auto-commit: false # Define se a conexão deve ser fechada automaticamente após a transação ser concluída.
+      connection-timeout: 250 #Define o tempo máximo de espera para a obtenção de uma conexão do pool.
+      max-lifetime: 600000 #Define o tempo máximo de espera para a obtenção de uma conexão do pool.
+      maximum-pool-size: 20 #Define o tamanho máximo do pool de conexões.
+      minimum-idle: 10 #Define o número mínimo de conexões inativas no pool.
+      pool-name: master #Define o nome do pool de conexões.
+  jpa: #Define as configurações da camada de persistência.
+    open-in-view: false # mantém o contexto de persistência JPA aberto duração da requisição HTTP.
+    show-sql: true #Define se as queries SQL geradas pelo Hibernate devem ser logadas.
+    hibernate: #Define as configurações do Hibernate
+      ddl-auto: update # Define a estratégia de criação e atualização do banco de dados pelo Hibernate.
+    properties: #Define algumas propriedades específicas do Hibernate.
+      "[hibernete.dialect]": org.hibernate.dialect.PostgreSQLDialect #Define o dialeto do banco de dados PostgreSQL que o Hibernate irá utilizar.
+      "[hibernete.generate_static]": false #Define se as consultas SQL geradas pelo Hibernate devem ser armazenadas em cache
+      "[hibernete.connection.provider_disables_autocommit]": true #Define se o provedor de conexões JDBC deve desabilitar o modo de autocommit.
