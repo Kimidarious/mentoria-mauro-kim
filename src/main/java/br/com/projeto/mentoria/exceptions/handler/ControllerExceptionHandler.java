@@ -14,7 +14,7 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(ApiException.class)
     public ResponseEntity<ExceptionMessage> apiExceptionHandle(ApiException e) {
-        ExceptionMessage err = new ExceptionMessage(List.of(e.getMessage()));
+        ExceptionMessage err = new ExceptionMessage(e.getErros());
         return ResponseEntity.status(e.getStatusCode()).body(err);
 
     }

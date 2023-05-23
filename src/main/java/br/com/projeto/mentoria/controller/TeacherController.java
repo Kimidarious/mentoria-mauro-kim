@@ -1,7 +1,9 @@
 package br.com.projeto.mentoria.controller;
 
 import br.com.projeto.mentoria.domain.Teacher;
-import br.com.projeto.mentoria.service.TeacherService;
+import br.com.projeto.mentoria.services.TeacherService;
+import java.net.URI;
+import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,9 +13,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.net.URI;
-import java.util.List;
 
 @RestController
 @RequestMapping("/teachers")
@@ -26,30 +25,31 @@ public class TeacherController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Teacher>> findAll(){
+    public ResponseEntity<List<Teacher>> findAll() {
         var teacher = teacherService.findAll();
         return ResponseEntity.ok(teacher);
     }
 
-    @PostMapping
-    public ResponseEntity<Teacher> insert(@RequestBody Teacher teacher){
-        var entity = teacherService.insert(teacher);
-        return ResponseEntity.created(URI.create("teachers" + entity.getId())).body(entity);
-    }
-
     @GetMapping("{id}")
-    public ResponseEntity<Teacher> findById(@PathVariable(name = "id") int id){
+    public ResponseEntity<Teacher> findById(@PathVariable(name = "id") int id) {
         var teacher = teacherService.findById(id);
         return ResponseEntity.ok(teacher);
     }
 
+    @PostMapping()
+    public ResponseEntity<Teacher> insert(@RequestBody Teacher teacher) {
+        var entity = teacherService.insert(teacher);
+        return ResponseEntity.created(URI.create("teachers" + entity.getId())).body(entity);
+    }
+
     @PutMapping("{id}")
-    public ResponseEntity<Void> update(@RequestBody Teacher teacher, @PathVariable(name = "id") int id){
+    public ResponseEntity<Void> update(@RequestBody Teacher teacher, @PathVariable(name = "id") int id) {
         teacherService.update(teacher, id);
         return ResponseEntity.noContent().build();
     }
+
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> delete(@PathVariable(name = "id") int id){
+    public ResponseEntity<Void> delete(@PathVariable(name = "id") int id) {
         teacherService.delete(id);
         return ResponseEntity.noContent().build();
     }
