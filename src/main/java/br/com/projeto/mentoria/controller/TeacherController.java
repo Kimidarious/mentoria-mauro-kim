@@ -1,7 +1,7 @@
 package br.com.projeto.mentoria.controller;
 
 import br.com.projeto.mentoria.domain.Teacher;
-import br.com.projeto.mentoria.services.TeacherService;
+import br.com.projeto.mentoria.service.TeacherService;
 import java.net.URI;
 import java.util.List;
 import org.springframework.http.ResponseEntity;

@@ -4,7 +4,6 @@ import br.com.projeto.mentoria.domain.validator.StudentValidator;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 

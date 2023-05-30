@@ -5,6 +5,7 @@ import br.com.projeto.mentoria.repositories.TeacherRepository;
 import br.com.projeto.mentoria.exceptions.ApiException;
 
 import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -33,11 +34,9 @@ public class TeacherService {
         if (teacher == null) {
             return teacherRepository.save(object);
         } else if (teacher.getStatus()) {
-            throw new ApiException("This teacher is already exists and your status is active.",
-                    HttpStatus.CONFLICT);
+            throw new ApiException("This teacher is already exists and your status is active.", HttpStatus.CONFLICT);
         } else {
-            throw new ApiException("This teacher is already exists and your status is desactive.",
-                    HttpStatus.BAD_REQUEST);
+            throw new ApiException("This teacher is already exists and your status is desactive.", HttpStatus.BAD_REQUEST);
         }
     }
 
