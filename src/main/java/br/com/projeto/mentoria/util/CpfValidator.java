@@ -15,6 +15,7 @@ public final class CpfValidator {
         for (int i = 0; i < 9; i++) {
             soma += (cpf.charAt(i) - '0') * (10 - i);
         }
+
         int digito1 = 11 - (soma % 11);
         if (digito1 > 9) digito1 = 0;
 

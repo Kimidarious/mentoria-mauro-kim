@@ -1,7 +1,6 @@
 package br.com.projeto.mentoria.domain;
 
-import br.com.projeto.mentoria.util.CpfValidator;
-import br.com.projeto.mentoria.util.EmailValidator;
+import br.com.projeto.mentoria.domain.validator.PersonValidator;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -25,7 +24,7 @@ public abstract class Person {
     private Boolean status;
 
     @Column(name = "CPF", nullable = false, unique = true, length = 11)
-    private String cpf;
+    protected String cpf;
 
     public int getId() {
         return id;
@@ -66,18 +65,6 @@ public abstract class Person {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-    @Transient
-    protected List<String> errors = new ArrayList<>();
-    protected void validate() {
-        if (name == null || name.trim().isEmpty() || name.length() > 50) {
-            errors.add("This field is mandatory and must be 50 characters long.");
-        }
-        if (!CpfValidator.isCpfValid(cpf)) {
-            errors.add("Must be a valid cpf");
-        }
 
-        if (!EmailValidator.isEmailValid(email)) {
-            errors.add("Must be a valid email");
-        }
-    }
+    protected abstract List<String> validate();
 }

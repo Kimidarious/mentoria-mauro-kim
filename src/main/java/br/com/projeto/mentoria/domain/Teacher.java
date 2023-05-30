@@ -1,10 +1,11 @@
 package br.com.projeto.mentoria.domain;
 
+import br.com.projeto.mentoria.domain.validator.TeacherValidator;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import java.time.LocalDate;
-import java.time.Period;
+
+import java.util.List;
 
 
 @Entity(name = "Teacher")
@@ -21,13 +22,9 @@ public class Teacher extends Person {
     public void setAge(Integer age) {
         this.age = age;
     }
-    public boolean isAdult() {
-        if (age != null) {
-            LocalDate currentDate = LocalDate.now();
-            LocalDate birthDate = currentDate.minusYears(age);
-            Period period = Period.between(birthDate, currentDate);
-            return period.getYears() >= 18;
-        }
-        return false;
+
+    @Override
+    public List<String> validate() {
+        return new TeacherValidator().validate(this);
     }
 }

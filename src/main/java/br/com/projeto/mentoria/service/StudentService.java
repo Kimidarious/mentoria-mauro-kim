@@ -22,20 +22,21 @@ public class StudentService {
     }
 
     public Student findById(int id) {
-        var result = studentRepository.findById(id);
-        return result.orElseThrow(() -> new ApiException("Entity not found.", HttpStatus.NOT_FOUND));
+        var result = studentRepository.findById(id).get();
+        return result;
     }
 
     public Student insert(Student object) {
+        object.validate();
         var student = studentRepository.findByCpf(object.getCpf());
 
         if (student == null) {
-            return studentRepository.save(student);
+            return studentRepository.save(object);
         } else if (student.getStatus()) {
-            throw new ApiException("This teacher is already exists and your status is active.",
+            throw new ApiException("This student is already exists and your status is active.",
                     HttpStatus.CONFLICT);
         } else {
-            throw new ApiException("This teacher is already exists and your status is desactive.",
+            throw new ApiException("This student is already exists and your status is desactive.",
                     HttpStatus.BAD_REQUEST);
         }
     }

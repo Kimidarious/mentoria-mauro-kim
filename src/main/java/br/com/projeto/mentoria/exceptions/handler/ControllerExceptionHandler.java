@@ -16,10 +16,10 @@ public class ControllerExceptionHandler {
     public ResponseEntity<ExceptionMessage> apiExceptionHandle(ApiException e) {
         ExceptionMessage err = new ExceptionMessage(e.getErros());
         return ResponseEntity.status(e.getStatusCode()).body(err);
-
     }
+
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ExceptionMessage> exceptionHandle(Exception e){
+    public ResponseEntity<ExceptionMessage> exceptionHandle(Exception e) {
         ExceptionMessage err = new ExceptionMessage(List.of(e.getMessage()));
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(err);
     }

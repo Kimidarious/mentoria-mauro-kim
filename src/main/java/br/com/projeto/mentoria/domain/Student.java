@@ -1,31 +1,29 @@
 package br.com.projeto.mentoria.domain;
 
+import br.com.projeto.mentoria.domain.validator.StudentValidator;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity(name = "Student")
 @Table(name = "Student")
-public class Student extends Person{
+public class Student extends Person {
     @Column(name = "birthdayDate", nullable = false)
-    private Date birthdayDate;
+    private LocalDate birthdayDate;
 
-    public Date getBirthdayDate() {
+    public LocalDate getBirthdayDate() {
         return birthdayDate;
     }
 
-    public void setBirthdayDate(Date birthdayDate) {
+    public void setBirthdayDate(LocalDate birthdayDate) {
         this.birthdayDate = birthdayDate;
     }
 
-    public boolean isOldEnough() {
-        if (birthdayDate != null) {
-            Date currentDate = new Date();
-            long sixYearsInMillis = 6L * 365L * 24L * 60L * 60L * 1000L;
-            Date sixYearsAgo = new Date(currentDate.getTime() - sixYearsInMillis);
-            return birthdayDate.before(sixYearsAgo);
-        }
-        return false;
+    @Override
+    public List<String> validate() {
+        return new StudentValidator().validate(this);
     }
 }

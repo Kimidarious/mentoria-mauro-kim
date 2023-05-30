@@ -11,7 +11,7 @@ public class ApiException extends RuntimeException{
 
     public ApiException(String message, HttpStatus httpStatus) {
         erros = List.of(message);
-        this.statusCode = httpStatus;
+        statusCode = httpStatus;
     }
 
     public ApiException(List<String> message, HttpStatus httpStatus) {
