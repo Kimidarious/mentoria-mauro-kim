@@ -1,11 +1,10 @@
 package br.com.projeto.mentoria.exceptions;
 
-import org.aspectj.bridge.IMessage;
 import org.springframework.http.HttpStatus;
 
 import java.util.List;
 
-public class ApiException extends RuntimeException{
+public class ApiException extends RuntimeException {
     private HttpStatus statusCode;
     private List<String> erros;
 

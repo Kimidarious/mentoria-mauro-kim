@@ -14,20 +14,11 @@ repositories {
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-    //Biblioteca para iniciar uma aplicação webApi
     implementation 'org.springframework.boot:spring-boot-starter-web'
-
-    //Bibliotecas para banco
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.postgresql:postgresql'
-    implementation 'javax.persistence:persistence-api:1.0'
-    implementation 'jakarta.json:jakarta.json-api:2.0.1'
-    implementation 'com.google.code.gson:gson:2.8.9'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
-    implementation 'org.eclipse:yasson:1.0.6'
-    implementation 'jakarta.json.bind:jakarta.json.bind-api:2.0.1'
+    //implementation 'javax.persistence:persistence-api:1.0'
+    implementation 'org.postgresql:postgresql:42.5.4'
 }
 
 test {

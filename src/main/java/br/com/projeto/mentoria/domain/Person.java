@@ -1,9 +1,11 @@
 package br.com.projeto.mentoria.domain;
 
 import br.com.projeto.mentoria.domain.validator.PersonValidator;
-import jakarta.persistence.*;
-
-import java.util.ArrayList;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
 import java.util.List;
 
 @MappedSuperclass
@@ -15,10 +17,10 @@ public abstract class Person {
     private int id;
 
     @Column(name = "name", nullable = false, length = 50)
-    private String name;
+    protected String name;
 
     @Column(name = "email", unique = true, columnDefinition = "VARCHAR(50) NOT NULL")
-    private String email;
+    protected String email;
 
     @Column(name = "status", nullable = false)
     private Boolean status;
@@ -66,5 +68,6 @@ public abstract class Person {
         this.cpf = cpf;
     }
 
-    protected abstract List<String> validate();
+    protected abstract List<String> validated();
+
 }

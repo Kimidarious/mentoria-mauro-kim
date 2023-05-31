@@ -1,15 +1,17 @@
 package br.com.projeto.mentoria.domain;
 
 import br.com.projeto.mentoria.domain.validator.StudentValidator;
-import jakarta.persistence.*;
-
+import br.com.projeto.mentoria.domain.validator.TeacherValidator;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import java.time.LocalDate;
 import java.util.List;
-
 
 @Entity(name = "Student")
 @Table(name = "Student")
 public class Student extends Person {
+
     @Column(name = "birthdayDate", nullable = false)
     private LocalDate birthdayDate;
 
@@ -22,7 +24,7 @@ public class Student extends Person {
     }
 
     @Override
-    public List<String> validate() {
+    public List<String> validated() {
         return new StudentValidator().validate(this);
     }
 }

@@ -3,10 +3,9 @@ package br.com.projeto.mentoria.service;
 import br.com.projeto.mentoria.domain.Student;
 import br.com.projeto.mentoria.exceptions.ApiException;
 import br.com.projeto.mentoria.repositories.StudentRepository;
+import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class StudentService {
@@ -27,9 +26,8 @@ public class StudentService {
     }
 
     public Student insert(Student object) {
-        object.validate();
+        //object.validate();
         var student = studentRepository.findByCpf(object.getCpf());
-
         if (student == null) {
             return studentRepository.save(object);
         } else if (student.getStatus()) {
@@ -41,9 +39,9 @@ public class StudentService {
         }
     }
 
-    public void update(Student student, int id) {
-        student.setId(id);
-        studentRepository.save(student);
+    public void update(Student object, int id) {
+        object.setId(id);
+        studentRepository.save(object);
     }
 
     public void delete(int id) {

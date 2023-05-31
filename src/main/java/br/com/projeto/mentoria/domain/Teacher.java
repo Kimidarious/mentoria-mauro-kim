@@ -4,9 +4,7 @@ import br.com.projeto.mentoria.domain.validator.TeacherValidator;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-
 import java.util.List;
-
 
 @Entity(name = "Teacher")
 @Table(name = "Teacher")
@@ -24,7 +22,7 @@ public class Teacher extends Person {
     }
 
     @Override
-    public List<String> validate() {
+    public List<String> validated() {
         return new TeacherValidator().validate(this);
     }
 }
