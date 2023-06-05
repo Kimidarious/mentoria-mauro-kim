@@ -26,8 +26,9 @@ public class StudentController {
 
     @GetMapping
     public ResponseEntity<List<Student>> findAll() {
-        var student = studentService.findAll();
-        return ResponseEntity.ok(student);
+        List<Student> studentList;
+        studentList = studentService.findAll();
+        return ResponseEntity.ok(studentList);
     }
 
     @GetMapping("{id}")

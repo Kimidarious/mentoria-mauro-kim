@@ -2,7 +2,7 @@ package br.com.projeto.mentoria.util;
 
 public final class CpfValidator {
 
-    public static boolean isCpfValid(String cpf) {
+    public static boolean isValidCPF(String cpf) {
         // remove caracteres indesejados
         cpf = cpf.replaceAll("[^0-9]", "");
 
@@ -15,7 +15,6 @@ public final class CpfValidator {
         for (int i = 0; i < 9; i++) {
             soma += (cpf.charAt(i) - '0') * (10 - i);
         }
-
         int digito1 = 11 - (soma % 11);
         if (digito1 > 9) digito1 = 0;
 
@@ -24,7 +23,6 @@ public final class CpfValidator {
         for (int i = 0; i < 10; i++) {
             soma += (cpf.charAt(i) - '0') * (11 - i);
         }
-
         int digito2 = 11 - (soma % 11);
         if (digito2 > 9) digito2 = 0;
 

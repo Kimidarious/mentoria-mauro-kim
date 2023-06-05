@@ -1,9 +1,12 @@
 package br.com.projeto.mentoria.service;
 
+import br.com.projeto.mentoria.domain.Person;
 import br.com.projeto.mentoria.domain.Teacher;
 import br.com.projeto.mentoria.repositories.TeacherRepository;
 import br.com.projeto.mentoria.exceptions.ApiException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
